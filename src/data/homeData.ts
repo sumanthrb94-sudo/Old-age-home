@@ -27,7 +27,7 @@ export const HOME_DETAILS = {
   teluguName: "శివ ప్రకాష్ వృద్ధాశ్రమం",
   locationShort: "Bowrampet · Hyderabad",
   address: "Honest Residency, Bowrampet, Hyderabad, Telangana 500043",
-  googleMapsUrl: "https://maps.app.goo.gl/g6vtTfSB3FcP2G8XA?g_st=ac",
+  googleMapsUrl: "https://maps.app.goo.gl/YvD3Ee12B63DLxz5A?g_st=ac",
   phoneDisplay: "+91 93910 36931",
   phoneRaw: "+919391036931",
   whatsappNumber: "919391036931",
