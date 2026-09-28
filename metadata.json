@@ -1,0 +1,6 @@
+{
+  "name": "Siva Prakash Old Age Home",
+  "description": "Compassionate senior living and elder care home in Bowrampet, Hyderabad. Providing 24/7 nursing care, doctor visits, nutritious home-cooked meals, and a peaceful green sanctuary.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
