@@ -4,101 +4,17 @@ import { HOME_DETAILS } from "../data/homeData";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const whatsappUrl = `https://wa.me/${HOME_DETAILS.whatsappNumber}?text=${encodeURIComponent(
-    "Hello Siva Prakash Old Age Home, I would like to inquire about admissions and care facilities at Bowrampet, Hyderabad."
-  )}`;
-
-  return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
-        
-        {/* Brand */}
-        <a href="#" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-800 text-white flex items-center justify-center shadow-sm">
-            <HeartHandshake className="w-5 h-5 text-amber-200" />
-          </div>
-          <div>
-            <span className="font-editorial text-lg sm:text-xl font-bold tracking-tight text-stone-900 block leading-tight">
-              Siva Prakash
-            </span>
-            <span className="text-xs text-stone-500 font-medium flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-amber-700" />
-              <span>Bowrampet, Hyderabad</span>
-            </span>
-          </div>
-        </a>
-
-        {/* Desktop Links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
-          <a href="#services" className="hover:text-amber-800 transition-colors">Services</a>
-          <a href="#rooms" className="hover:text-amber-800 transition-colors">Rooms & Fees</a>
-          <a href="#gallery" className="hover:text-amber-800 transition-colors">Photos</a>
-          <a href="#location" className="hover:text-amber-800 transition-colors">Location</a>
-        </nav>
-
-        {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
-          <a
-            href={`tel:${HOME_DETAILS.phoneRaw}`}
-            className="text-xs font-semibold text-stone-700 hover:text-amber-800 px-3 py-2 rounded-lg border border-stone-300 hover:border-amber-800 transition-colors flex items-center gap-1.5"
-          >
-            <Phone className="w-3.5 h-3.5 text-amber-700" />
-            <span>Call Us</span>
-          </a>
-
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg shadow-sm transition-colors flex items-center gap-1.5"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>WhatsApp</span>
-          </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <div className="flex md:hidden items-center gap-2">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-semibold text-white bg-emerald-600 px-3 py-1.5 rounded-lg flex items-center gap-1"
-          >
-            <MessageCircle className="w-3.5 h-3.5" />
-            <span>WhatsApp</span>
-          </a>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-stone-600 hover:text-stone-900"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
+  const whatsappUrl = `https://wa.me/${HOME_DETAILS.whatsappNumber}?text=${encodeURIComponent("Namaste, I would like to enquire about admission and elder care at Siva Prakash Old Age Home, Bowrampet.")}`;
+  return <>
+    <div className="pattern-band h-2" aria-hidden="true" />
+    <header className="sticky top-0 z-50 border-b border-[#e9dccb] bg-[#fbf6ed]/95 backdrop-blur-md">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
+        <a href="#top" className="flex items-center gap-3"><div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#762f35] text-[#f8d79b] shadow-sm"><HeartHandshake className="h-5 w-5" /></div><div><span className="font-editorial block text-xl leading-none text-[#762f35]">Siva Prakash</span><span className="mt-1 flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#7b7068]"><MapPin className="h-3 w-3 text-[#d97732]" /> Bowrampet, Hyderabad</span></div></a>
+        <nav className="hidden items-center gap-7 text-sm font-semibold text-[#615650] md:flex"><a href="#services" className="hover:text-[#762f35]">Our care</a><a href="#rooms" className="hover:text-[#762f35]">Stay options</a><a href="#gallery" className="hover:text-[#762f35]">Life here</a><a href="#location" className="hover:text-[#762f35]">Visit us</a></nav>
+        <div className="hidden items-center gap-2 sm:flex"><a href={`tel:${HOME_DETAILS.phoneRaw}`} className="flex items-center gap-2 rounded-full border border-[#d9c6b1] px-4 py-2 text-xs font-bold text-[#762f35] hover:border-[#762f35]"><Phone className="h-3.5 w-3.5" /> Call us</a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-full bg-[#176f70] px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-[#125c5d]"><MessageCircle className="h-4 w-4" /> WhatsApp</a></div>
+        <div className="flex items-center gap-2 md:hidden"><a href={whatsappUrl} target="_blank" rel="noreferrer" className="rounded-full bg-[#176f70] px-3 py-2 text-xs font-bold text-white"><MessageCircle className="inline h-3.5 w-3.5" /> <span className="ml-1">Chat</span></a><button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="rounded-full p-2 text-[#762f35]" aria-label="Toggle menu">{mobileMenuOpen ? <X /> : <Menu />}</button></div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-200 bg-white px-4 py-4 space-y-3">
-          <div className="flex flex-col space-y-2 text-sm font-medium text-stone-700">
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-1">Services</a>
-            <a href="#rooms" onClick={() => setMobileMenuOpen(false)} className="py-1">Rooms & Fees</a>
-            <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="py-1">Photos</a>
-            <a href="#location" onClick={() => setMobileMenuOpen(false)} className="py-1">Location</a>
-          </div>
-          <div className="pt-2 border-t border-stone-100 flex flex-col gap-2">
-            <a
-              href={`tel:${HOME_DETAILS.phoneRaw}`}
-              className="w-full py-2 text-center text-xs font-semibold border border-stone-300 rounded-lg flex items-center justify-center gap-1.5 text-stone-800"
-            >
-              <Phone className="w-3.5 h-3.5 text-amber-700" />
-              <span>Call: {HOME_DETAILS.phoneDisplay}</span>
-            </a>
-          </div>
-        </div>
-      )}
+      {mobileMenuOpen && <div className="border-t border-[#e9dccb] bg-[#fbf6ed] px-5 py-4 md:hidden"><div className="flex flex-col gap-3 text-sm font-bold text-[#615650]"><a href="#services" onClick={() => setMobileMenuOpen(false)}>Our care</a><a href="#rooms" onClick={() => setMobileMenuOpen(false)}>Stay options</a><a href="#gallery" onClick={() => setMobileMenuOpen(false)}>Life here</a><a href="#location" onClick={() => setMobileMenuOpen(false)}>Visit us</a></div><a href={`tel:${HOME_DETAILS.phoneRaw}`} className="mt-4 flex items-center justify-center gap-2 rounded-xl border border-[#d9c6b1] py-3 text-xs font-bold text-[#762f35]"><Phone className="h-4 w-4" /> {HOME_DETAILS.phoneDisplay}</a></div>}
     </header>
-  );
+  </>;
 }

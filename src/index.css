@@ -1,19 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-ink: #27221f;
+  --color-saffron: #d97732;
+  --color-teal: #176f70;
+  --color-maroon: #762f35;
+  --color-cream: #fbf6ed;
 }
 
-/* Custom smooth transitions and utility styles */
-html {
-  scroll-behavior: smooth;
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fbf6ed; color: #27221f; font-family: var(--font-sans); }
+.font-editorial { font-family: var(--font-serif); }
+
+.pattern-band {
+  background-color: #762f35;
+  background-image: radial-gradient(#d9984a 1px, transparent 1px), radial-gradient(#d9984a 1px, transparent 1px);
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+  opacity: .92;
 }
 
-body {
-  font-family: var(--font-sans);
-}
+.eyebrow { letter-spacing: .18em; font-size: .68rem; font-weight: 800; text-transform: uppercase; }
+.section-rule { height: 1px; background: linear-gradient(90deg, #d97732, transparent); }
+.text-balance { text-wrap: balance; }
 
-.font-editorial {
-  font-family: var(--font-serif);
-}
+button, a { -webkit-tap-highlight-color: transparent; }
+a, button { transition: transform 160ms cubic-bezier(.23,1,.32,1), background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease; }
+a:active, button:active { transform: scale(.97); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
