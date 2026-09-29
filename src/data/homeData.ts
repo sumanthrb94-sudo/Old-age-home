@@ -11,6 +11,8 @@ export interface CareService {
   description: string;
   icon: string;
   accent: string;
+  badge?: string;
+  category?: "facility" | "homecare";
 }
 
 export interface RoomOption {
@@ -113,12 +115,148 @@ export const LEGAL_DETAILS: LegalCompliance = {
   ],
 };
 
-export const CORE_SERVICES: CareService[] = [
-  { id: "nursing", title: "24/7 Nursing & Bedridden Care", description: "Round-the-clock trained nurses and attendants with daily vitals tracking, catheter management, and gentle bedside support.", icon: "Stethoscope", accent: "saffron" },
-  { id: "food", title: "Homely South Indian Veg Meals", description: "Fresh vegetarian meals cooked with less spice and salt, including familiar Telangana flavours and diabetic-friendly options.", icon: "Utensils", accent: "teal" },
-  { id: "doctor", title: "Doctor Visits & Hospital Proximity", description: "Routine physician check-ups on campus, with emergency tie-ups at Malla Reddy and SLG Hospitals just 12–15 minutes away.", icon: "ShieldCheck", accent: "maroon" },
-  { id: "living", title: "Assisted Living & Loving Family", description: "Help with bathing, grooming, mobility, and a peaceful courtyard where residents can share chai, stories, bhajans, and companionship.", icon: "Heart", accent: "mustard" },
+export const FACILITY_SERVICES: CareService[] = [
+  {
+    id: "old-age-home",
+    title: "Old Age Home Services",
+    description: "Providing a safe, loving, and homely environment for senior citizens with full-time care, medical support, and a peaceful atmosphere.",
+    icon: "HeartHandshake",
+    accent: "maroon",
+    badge: "Full-Time Sanctuary",
+    category: "facility",
+  },
+  {
+    id: "bedridden-care",
+    title: "Bedridden Patient Care",
+    description: "Dedicated, round-the-clock nursing care and personal assistance for completely bedridden patients.",
+    icon: "Bed",
+    accent: "teal",
+    badge: "24/7 Nursing",
+    category: "facility",
+  },
+  {
+    id: "ambulatory-care",
+    title: "Ambulatory & Walking Patient Care",
+    description: "Specialized care, monitoring, and gentle assistance for active or walking senior patients.",
+    icon: "Footprints",
+    accent: "mustard",
+    badge: "Mobility Assistance",
+    category: "facility",
+  },
+  {
+    id: "paralysis-care",
+    title: "Paralysis Patient Care",
+    description: "Specialized rehabilitation, physical support, and daily living assistance for paralysis patients.",
+    icon: "Accessibility",
+    accent: "saffron",
+    badge: "Physical Rehab",
+    category: "facility",
+  },
+  {
+    id: "fracture-care",
+    title: "Fracture & Bone Injury Care",
+    description: "Expert post-fracture care, mobility support, and comfortable healing arrangements for patients with broken bones or orthopedic issues.",
+    icon: "Bone",
+    accent: "maroon",
+    badge: "Orthopedic Care",
+    category: "facility",
+  },
+  {
+    id: "nri-care",
+    title: "NRI Patient Care",
+    description: "Premium, customized, and high-end luxury care packages tailored specifically for Non-Resident Indians (NRIs) and their families.",
+    icon: "Globe",
+    accent: "saffron",
+    badge: "Luxury Package",
+    category: "facility",
+  },
+  {
+    id: "tube-feeding",
+    title: "Tube Feeding & Liquid Diet Support",
+    description: "Professional feeding assistance, Ryle's tube feeding management, and nutritious soup/liquid diet administration for patients who cannot eat normally.",
+    icon: "Soup",
+    accent: "teal",
+    badge: "Ryle's Tube & Diets",
+    category: "facility",
+  },
+  {
+    id: "post-surgery",
+    title: "Post-Surgery & Post-Operative Care",
+    description: "Special medical observation, wound care, and recovery support for patients recovering from major surgeries or operations.",
+    icon: "Stethoscope",
+    accent: "mustard",
+    badge: "Surgical Recovery",
+    category: "facility",
+  },
+  {
+    id: "child-care",
+    title: "Child Care Services",
+    description: "Safe, nurturing, and affectionate care arrangements for children when needed.",
+    icon: "Baby",
+    accent: "maroon",
+    badge: "Loving Support",
+    category: "facility",
+  },
+  {
+    id: "mental-health",
+    title: "Neurological & Mental Health Care",
+    description: "Compassionate management and specialized care for patients with mental health conditions, brain stroke recovery, and varying mental abilities.",
+    icon: "Brain",
+    accent: "teal",
+    badge: "Neuro & Stroke Care",
+    category: "facility",
+  },
+  {
+    id: "chronic-illness",
+    title: "Specialized & Chronic Illness Care",
+    description: "Specialized medical support and compassionate care for HIV/AIDS patients and individuals dealing with other critical or chronic illnesses.",
+    icon: "ShieldAlert",
+    accent: "saffron",
+    badge: "Critical Care",
+    category: "facility",
+  },
 ];
+
+export const HOMECARE_SERVICES: CareService[] = [
+  {
+    id: "baby-care-nanny",
+    title: "Baby Care & Nanny Services",
+    description: "Expert babysitters and caregivers to handle all baby-related tasks with love, including giving baths, traditional massages, feeding milk, and overall childcare.",
+    icon: "Baby",
+    accent: "teal",
+    badge: "Doorstep Nanny",
+    category: "homecare",
+  },
+  {
+    id: "home-nursing",
+    title: "Home Nursing for Bedridden Patients",
+    description: "Professional and dedicated nursing care provided directly at your home for completely bedridden patients.",
+    icon: "Stethoscope",
+    accent: "maroon",
+    badge: "At-Home Nursing",
+    category: "homecare",
+  },
+  {
+    id: "cooking-services",
+    title: "Professional Cooking Services",
+    description: "Experienced cooks skilled in preparing a wide variety of delicious, healthy, and customized dishes tailored to your family's or patient's taste and dietary needs.",
+    icon: "ChefHat",
+    accent: "mustard",
+    badge: "Custom Home Cooking",
+    category: "homecare",
+  },
+  {
+    id: "hygiene-diaper",
+    title: "Diaper Change & Hygiene Services",
+    description: "Professional hygiene and sanitation assistance, including timely diaper changes and personal care management for seniors and patients.",
+    icon: "Bath",
+    accent: "saffron",
+    badge: "Hygiene & Dignity",
+    category: "homecare",
+  },
+];
+
+export const CORE_SERVICES: CareService[] = [...FACILITY_SERVICES, ...HOMECARE_SERVICES];
 
 export const ROOMS: RoomOption[] = [
   {
