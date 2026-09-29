@@ -1,41 +1,40 @@
-import { HeartHandshake, Phone, MapPin, MessageCircle, ShieldCheck } from "lucide-react";
+import { HeartHandshake, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { HOME_DETAILS, LEGAL_DETAILS } from "../data/homeData";
 
-export function Footer() {
-  const whatsappUrl = `https://wa.me/${HOME_DETAILS.whatsappNumber}?text=${encodeURIComponent(
-    "Hello, I would like to enquire about Siva Prakash Old Age Home."
-  )}`;
+interface FooterProps {
+  onOpenCompliance?: () => void;
+}
 
+export function Footer({ onOpenCompliance }: FooterProps) {
   return (
     <footer className="bg-[#27221f] py-12 text-white">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 md:flex-row md:items-start md:justify-between">
-        {/* Brand & Society */}
+        {/* Brand & Mission */}
         <div className="max-w-md">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#762f35] text-[#f8d79b]">
-              <HeartHandshake className="h-5 w-5" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#762f35] text-[#f8d79b]">
+              <HeartHandshake className="h-6 w-6" />
             </div>
             <div>
-              <p className="font-editorial text-xl">{HOME_DETAILS.name}</p>
-              <p className="text-xs text-white/60">
-                {LEGAL_DETAILS.registeredName}
-              </p>
+              <p className="font-editorial text-xl font-bold">{HOME_DETAILS.name}</p>
+              <p className="text-xs text-white/60">{HOME_DETAILS.tagline}</p>
             </div>
           </div>
 
-          <p className="mt-3 text-xs leading-5 text-white/50">
-            A registered non-profit society & senior home committed to dignified assisted living, medical care, and
-            homely warmth for elders in Hyderabad.
+          <p className="mt-3 text-xs leading-5 text-white/60">
+            Providing compassionate full-time assisted living at our Bowrampet campus and dedicated patient care directly
+            at your doorstep in Hyderabad.
           </p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px] text-[#f8d79b]/90">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#86d1cb]" /> Reg No: {HOME_DETAILS.societyRegNo}
-            </span>
-            <span>•</span>
-            <span>GSTIN: {HOME_DETAILS.gstin}</span>
-            <span>•</span>
-            <span>PAN: {HOME_DETAILS.pan}</span>
+          {/* Quick Legal Credentials with clickable popup */}
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+            <button
+              onClick={onOpenCompliance}
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 hover:bg-white/20 px-3 py-1.5 text-[11px] font-bold text-[#86d1cb] transition-colors"
+            >
+              <ShieldCheck className="h-4 w-4" />
+              <span>Govt. Reg No: {HOME_DETAILS.societyRegNo} · GST & PAN Verified</span>
+            </button>
           </div>
         </div>
 
@@ -44,9 +43,6 @@ export function Footer() {
           <p className="text-[11px] font-bold uppercase tracking-wider text-white/40">Direct Contact</p>
           <a href={`tel:${HOME_DETAILS.phoneRaw}`} className="flex items-center gap-2 hover:text-[#f8d79b]">
             <Phone className="h-4 w-4 text-[#d97732]" /> {HOME_DETAILS.phoneDisplay}
-          </a>
-          <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[#86d1cb] hover:text-white">
-            <MessageCircle className="h-4 w-4" /> WhatsApp Enquiries
           </a>
           <a href={HOME_DETAILS.googleMapsUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#f8d79b]">
             <MapPin className="h-4 w-4 text-[#d97732]" /> Campus: {HOME_DETAILS.address}
@@ -58,8 +54,8 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-8 max-w-7xl border-t border-white/10 px-5 pt-6 text-xs text-white/40 sm:px-8 flex flex-col sm:flex-row sm:justify-between gap-2">
-        <span>© {new Date().getFullYear()} {LEGAL_DETAILS.registeredName}. All rights reserved.</span>
-        <span>Registered under Telangana Societies Registration Act, 2001 · Proprietor: {LEGAL_DETAILS.proprietor}</span>
+        <span>© {new Date().getFullYear()} {HOME_DETAILS.name}. {LEGAL_DETAILS.registeredName}.</span>
+        <span>Proprietor: {LEGAL_DETAILS.proprietor} · GSTIN: {HOME_DETAILS.gstin}</span>
       </div>
     </footer>
   );

@@ -55,10 +55,11 @@ export interface LegalCompliance {
 }
 
 export const HOME_DETAILS = {
-  name: "Siva Prakash Old Age Home",
+  name: "Siva Prakash Hospitalities",
+  tagline: "Specialized in Old Age Home Care",
   registeredName: "Siva Prakash Homecare Service & Old Age Home",
   proprietor: "Vemagiri Chinnodu",
-  teluguName: "శివ ప్రకాష్ వృద్ధాశ్రమం",
+  teluguName: "శివ ప్రకాష్ హాస్పిటాలిటీస్",
   locationShort: "Bowrampet · Hyderabad",
   address: "Honest Residency, Bowrampet, Hyderabad, Telangana 500043",
   registeredOffice: "Plot No. 70, H.No 8-415/70, Sapthagiri Colony, Miyapur, Hyderabad, Telangana 500049",

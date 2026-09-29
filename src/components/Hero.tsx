@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MessageCircle, MapPin, CheckCircle2, ShieldCheck, Heart, Sparkles } from "lucide-react";
+import { Phone, MapPin, CheckCircle2, Sparkles } from "lucide-react";
 import { HOME_DETAILS } from "../data/homeData";
 
 const HERO_IMAGES = [
@@ -29,7 +29,7 @@ export function Hero() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const whatsappUrl = `https://wa.me/${HOME_DETAILS.whatsappNumber}?text=${encodeURIComponent(
-    "Namaste, I would like to enquire about admission and room availability at Siva Prakash Old Age Home."
+    "Namaste, I would like to enquire about elder care services and room availability at Siva Prakash Hospitalities."
   )}`;
 
   const activeImage = HERO_IMAGES[activeImageIndex];
@@ -65,14 +65,14 @@ export function Hero() {
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 text-white flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#f8d79b]">
-                  {HOME_DETAILS.teluguName} · Hyderabad
+                  {HOME_DETAILS.name} · {HOME_DETAILS.tagline}
                 </p>
                 <h2 className="mt-1 font-editorial text-2xl sm:text-4xl text-white">
                   {activeImage.label}
                 </h2>
               </div>
               <div className="rounded-2xl bg-white/15 px-4 py-2 text-xs font-semibold backdrop-blur-md text-white border border-white/20 self-start sm:self-auto">
-                Stay options starting at <span className="text-[#f8d79b] font-bold text-sm">₹5,000 / month</span>
+                Stay options from <span className="text-[#f8d79b] font-bold text-sm">₹5,000 / month</span>
               </div>
             </div>
           </div>
@@ -107,14 +107,14 @@ export function Hero() {
           {/* Core Proposition */}
           <div className="lg:col-span-7">
             <p className="eyebrow mb-3 flex items-center gap-2 text-[#d97732]">
-              <span className="h-px w-6 bg-[#d97732]" /> Direct Admissions & Personalized Care
+              <span className="h-px w-6 bg-[#d97732]" /> {HOME_DETAILS.tagline}
             </p>
             <h1 className="font-editorial text-4xl leading-[1.05] text-[#27221f] sm:text-6xl">
               A peaceful home where elders are treated like <span className="text-[#762f35]">family.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-[#6d625a] sm:text-lg">
-              Located in calm Bowrampet, Hyderabad, we combine professional round-the-clock nursing with the warmth of
-              home-cooked meals, daily prayers, and genuine companionship.
+              At {HOME_DETAILS.name}, we provide round-the-clock nursing, specialized bedridden & rehabilitation care,
+              fresh vegetarian meals, and professional doorstep home care across Hyderabad.
             </p>
 
             {/* Trust Highlights */}
@@ -129,11 +129,11 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-2 rounded-xl bg-white p-2.5 border border-[#e8dccf]">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-[#176f70]" />
-                <span>Doctor Visits</span>
+                <span>Doctor Checkups</span>
               </div>
               <div className="flex items-center gap-2 rounded-xl bg-white p-2.5 border border-[#e8dccf]">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-[#176f70]" />
-                <span>From ₹5,000/mo</span>
+                <span>Doorstep Support</span>
               </div>
             </div>
 
@@ -154,14 +154,14 @@ export function Hero() {
                   Speak directly with us
                 </h3>
                 <p className="mt-1 text-xs leading-5 text-[#766a61]">
-                  Call or WhatsApp directly to check room availability, schedule a visit, or discuss care requirements.
+                  Call or message directly to check room availability, schedule a campus visit, or request home care.
                 </p>
               </div>
 
               {/* Prominent Phone Number Display */}
               <div className="my-5 rounded-2xl bg-[#fbf6ed] p-4 text-center border border-[#eadfd2]">
                 <p className="text-[11px] font-bold uppercase tracking-wider text-[#8a7c70]">
-                  Immediate Enquiries & Admissions
+                  Immediate Admissions & Enquiries
                 </p>
                 <a
                   href={`tel:${HOME_DETAILS.phoneRaw}`}
@@ -171,19 +171,22 @@ export function Hero() {
                 </a>
               </div>
 
-              {/* Streamlined Primary CTAs */}
+              {/* Streamlined Primary CTAs with Official WhatsApp Logo */}
               <div className="flex flex-col gap-3">
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2.5 rounded-full bg-[#176f70] py-3.5 text-sm font-bold text-white shadow-md hover:bg-[#125c5d]"
+                  className="flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] py-3.5 text-sm font-bold text-white shadow-md hover:bg-[#20ba59] transition-colors"
                 >
-                  <MessageCircle className="h-5 w-5" /> Chat on WhatsApp
+                  <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                  </svg>
+                  <span>Chat on WhatsApp</span>
                 </a>
                 <a
                   href={`tel:${HOME_DETAILS.phoneRaw}`}
-                  className="flex items-center justify-center gap-2 rounded-full border-2 border-[#762f35] py-3 text-sm font-bold text-[#762f35] hover:bg-[#762f35] hover:text-white"
+                  className="flex items-center justify-center gap-2 rounded-full border-2 border-[#762f35] py-3 text-sm font-bold text-[#762f35] hover:bg-[#762f35] hover:text-white transition-colors"
                 >
                   <Phone className="h-4 w-4" /> Call {HOME_DETAILS.phoneDisplay}
                 </a>
@@ -191,7 +194,7 @@ export function Hero() {
 
               {/* Reassurance Subtext */}
               <p className="mt-4 text-center text-[11px] font-medium text-[#8a7c70]">
-                ✓ Open 24/7 for emergency admissions & visits
+                ✓ Open 24/7 for emergency admissions & home care dispatch
               </p>
             </div>
           </div>

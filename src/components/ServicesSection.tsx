@@ -14,12 +14,10 @@ import {
   ChefHat,
   Bath,
   Home,
-  MessageCircle,
-  Phone,
   Sparkles,
   CheckCircle2,
 } from "lucide-react";
-import { FACILITY_SERVICES, HOMECARE_SERVICES, HOME_DETAILS, CareService } from "../data/homeData";
+import { FACILITY_SERVICES, HOMECARE_SERVICES } from "../data/homeData";
 
 export function ServicesSection() {
   const [activeTab, setActiveTab] = useState<"facility" | "homecare">("facility");
@@ -42,46 +40,26 @@ export function ServicesSection() {
 
   const currentServices = activeTab === "facility" ? FACILITY_SERVICES : HOMECARE_SERVICES;
 
-  const whatsappUrl = `https://wa.me/${HOME_DETAILS.whatsappNumber}?text=${encodeURIComponent(
-    `Namaste, I would like to enquire about your ${
-      activeTab === "facility" ? "Facility Patient Care & Old Age Home" : "Doorstep Home Care"
-    } services.`
-  )}`;
-
   return (
-    <section id="services" className="bg-white py-16 sm:py-24">
+    <section id="services" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <div className="max-w-2xl">
-            <p className="eyebrow flex items-center gap-2 text-[#d97732]">
-              <Sparkles className="h-4 w-4 text-[#d97732]" /> Complete Spectrum of Care Services
-            </p>
-            <h2 className="mt-2 font-editorial text-3xl sm:text-5xl text-[#27221f]">
-              Specialized care at our campus,{" "}
-              <span className="text-[#176f70]">& professional help at your doorstep.</span>
-            </h2>
-            <p className="mt-3 text-sm sm:text-base leading-7 text-[#766a61]">
-              Whether your loved one requires full-time residential rehabilitation in Bowrampet or dedicated nursing
-              support at your personal residence, our trained team delivers dignified, heartfelt care.
-            </p>
-          </div>
-
-          {/* Direct Assistance Box */}
-          <div className="rounded-2xl border border-[#eadfd2] bg-[#fbf6ed] p-4 text-xs shrink-0 self-start md:self-auto">
-            <p className="font-bold text-[#27221f]">Need immediate care assistance?</p>
-            <p className="text-[#766a61] mt-0.5">Speak directly with our care coordinator:</p>
-            <a
-              href={`tel:${HOME_DETAILS.phoneRaw}`}
-              className="mt-2 inline-flex items-center gap-2 font-bold text-[#762f35] hover:text-[#5e242a]"
-            >
-              <Phone className="h-3.5 w-3.5 text-[#d97732]" /> {HOME_DETAILS.phoneDisplay}
-            </a>
-          </div>
+        <div className="mb-10 max-w-3xl">
+          <p className="eyebrow flex items-center gap-2 text-[#d97732]">
+            <Sparkles className="h-4 w-4 text-[#d97732]" /> Complete Spectrum of Care
+          </p>
+          <h2 className="mt-2 font-editorial text-3xl sm:text-5xl text-[#27221f]">
+            Specialized care at our campus,{" "}
+            <span className="text-[#176f70]">& professional help at your doorstep.</span>
+          </h2>
+          <p className="mt-3 text-sm sm:text-base leading-7 text-[#766a61]">
+            Whether your family needs full-time residential elder care at Bowrampet or trusted nursing and cooking
+            support at your home in Hyderabad, our compassionate staff is here 24/7.
+          </p>
         </div>
 
         {/* Category Tabs: Facility vs Home Care */}
-        <div className="mb-10 flex flex-wrap gap-3 border-b border-[#eadfd2] pb-4">
+        <div className="mb-8 flex flex-wrap gap-3 border-b border-[#eadfd2] pb-4">
           <button
             onClick={() => setActiveTab("facility")}
             className={`flex items-center gap-2.5 rounded-2xl px-5 py-3 text-xs sm:text-sm font-bold transition-all ${
@@ -91,7 +69,7 @@ export function ServicesSection() {
             }`}
           >
             <Home className="h-4 w-4" />
-            <span>Part 1: Old Age Home & Special Patient Care</span>
+            <span>Part 1: Old Age Home & Facility Care</span>
             <span
               className={`rounded-full px-2 py-0.5 text-[11px] font-extrabold ${
                 activeTab === "facility" ? "bg-white/20 text-white" : "bg-[#eadfd2] text-[#762f35]"
@@ -110,7 +88,7 @@ export function ServicesSection() {
             }`}
           >
             <Stethoscope className="h-4 w-4" />
-            <span>Part 2: Doorstep Home Care Services</span>
+            <span>Part 2: Doorstep Home Care</span>
             <span
               className={`rounded-full px-2 py-0.5 text-[11px] font-extrabold ${
                 activeTab === "homecare" ? "bg-white/20 text-white" : "bg-[#eadfd2] text-[#176f70]"
@@ -121,35 +99,25 @@ export function ServicesSection() {
           </button>
         </div>
 
-        {/* Category Context Banner */}
-        <div className="mb-8 rounded-2xl bg-[#fbf6ed] p-4 text-xs sm:text-sm text-[#5a4e46] border border-[#eadfd2] flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-2.5">
-            <CheckCircle2 className="h-4 w-4 shrink-0 text-[#176f70]" />
-            <span>
-              {activeTab === "facility" ? (
-                <>
-                  <strong>Facility-Based Care:</strong> 24/7 doctors, nurses, Fowler beds, pure veg meals, and emergency
-                  hospital tie-ups at Honest Residency, Bowrampet campus.
-                </>
-              ) : (
-                <>
-                  <strong>Doorstep Home Care:</strong> Background-verified nurses, experienced nannies, cooks, and hygiene
-                  attendants dispatched directly to your home across Hyderabad.
-                </>
-              )}
-            </span>
-          </div>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 font-bold text-[#176f70] hover:underline"
-          >
-            <MessageCircle className="h-3.5 w-3.5" /> Enquire for this category
-          </a>
+        {/* Category Context Banner - Clean & Informative */}
+        <div className="mb-8 rounded-2xl bg-[#fbf6ed] p-4 text-xs sm:text-sm text-[#5a4e46] border border-[#eadfd2] flex items-center gap-2.5">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#176f70]" />
+          <span>
+            {activeTab === "facility" ? (
+              <>
+                <strong>Facility-Based Services:</strong> Round-the-clock doctors, nurses, fowler beds, pure veg meals,
+                and emergency hospital tie-ups at Honest Residency, Bowrampet.
+              </>
+            ) : (
+              <>
+                <strong>Doorstep Home Services:</strong> Background-verified nurses, experienced nannies, cooks, and
+                hygiene attendants dispatched directly to your residence across Hyderabad.
+              </>
+            )}
+          </span>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid (No CTA Spam) */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {currentServices.map((service, index) => {
             const IconComponent = iconMap[service.icon] || HeartHandshake;
@@ -168,7 +136,6 @@ export function ServicesSection() {
                 className="group flex flex-col justify-between rounded-3xl border border-[#eadfd2] bg-[#fbf6ed] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#762f35]/5"
               >
                 <div>
-                  {/* Top Row: Icon + Number / Badge */}
                   <div className="mb-5 flex items-start justify-between">
                     <div className={`flex h-12 w-12 items-center justify-center rounded-2xl shadow-xs ${accentBg}`}>
                       <IconComponent className="h-6 w-6" />
@@ -180,18 +147,15 @@ export function ServicesSection() {
                     )}
                   </div>
 
-                  {/* Title */}
                   <h3 className="font-editorial text-xl font-bold leading-snug text-[#27221f] group-hover:text-[#762f35] transition-colors">
                     {service.title}
                   </h3>
 
-                  {/* Description */}
                   <p className="mt-2.5 text-xs leading-5 text-[#6d625a]">
                     {service.description}
                   </p>
                 </div>
 
-                {/* Sub-label footer */}
                 <div className="mt-5 pt-3 border-t border-[#eadfd2]/60 text-[11px] font-semibold text-[#8a7c70] flex items-center justify-between">
                   <span>Service #{index + 1}</span>
                   <span className="text-[#176f70] font-bold">

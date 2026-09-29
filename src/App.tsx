@@ -1,45 +1,51 @@
+import { useState } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { ServicesSection } from "./components/ServicesSection";
 import { LivingOptionsSection } from "./components/LivingOptionsSection";
 import { GallerySection } from "./components/GallerySection";
-import { TrustVerificationSection } from "./components/TrustVerificationSection";
 import { LocationSection } from "./components/LocationSection";
 import { Footer } from "./components/Footer";
 import { FloatingActions } from "./components/FloatingActions";
+import { ComplianceModal } from "./components/ComplianceModal";
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-stone-50 text-stone-800 flex flex-col font-sans selection:bg-amber-200 selection:text-amber-900 pb-16 sm:pb-0">
-      {/* Minimal Header */}
-      <Header />
+  const [isComplianceOpen, setIsComplianceOpen] = useState(false);
 
-      {/* Main Content Sections */}
+  return (
+    <div className="min-h-screen bg-[#fbf6ed] text-[#27221f] flex flex-col font-sans selection:bg-amber-200 selection:text-amber-900">
+      {/* Clean Header */}
+      <Header onOpenCompliance={() => setIsComplianceOpen(true)} />
+
+      {/* Main Content Sections - Focused & High-Converting */}
       <main className="flex-1">
-        {/* Warm, Minimal Hero with Top Images */}
+        {/* Hero Section with Top Real Images */}
         <Hero />
 
-        {/* 4 Core Care Services */}
+        {/* Part 1 (Facility Care 11) & Part 2 (Home Care 4) Services */}
         <ServicesSection />
 
-        {/* 4 Accommodation & Pricing Options */}
+        {/* 4 Transparent Stay & Room Pricing Options */}
         <LivingOptionsSection />
 
-        {/* Curated Indian Elder Photo Gallery */}
+        {/* Authentic Campus Life Photo Gallery */}
         <GallerySection />
 
-        {/* Government Registrations, GST, PAN & Labour Approvals */}
-        <TrustVerificationSection />
-
-        {/* Bowrampet Campus Location & Direct Contact */}
+        {/* Campus Location Map & Visit Info */}
         <LocationSection />
       </main>
 
-      {/* Minimal Clean Footer */}
-      <Footer />
+      {/* Clean Footer with Compliance Link */}
+      <Footer onOpenCompliance={() => setIsComplianceOpen(true)} />
 
-      {/* Persistent Floating WhatsApp CTA */}
+      {/* Animated Official WhatsApp Conversion Button */}
       <FloatingActions />
+
+      {/* On-Demand Government Approvals, GST & PAN Modal */}
+      <ComplianceModal
+        isOpen={isComplianceOpen}
+        onClose={() => setIsComplianceOpen(false)}
+      />
     </div>
   );
 }
