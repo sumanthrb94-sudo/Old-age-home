@@ -16,10 +16,20 @@ export interface CareService {
 export interface RoomOption {
   id: string;
   title: string;
+  badge?: string;
+  price: string;
+  billingUnit: string;
   pricePerMonth: string;
   description: string;
+  layout: string;
+  bathroomInfo: string;
+  amenities: string[];
+  food?: string;
+  specialService?: string;
   features: string[];
   imageUrl: string;
+  popular?: boolean;
+  featured?: boolean;
 }
 
 export const HOME_DETAILS = {
@@ -28,9 +38,9 @@ export const HOME_DETAILS = {
   locationShort: "Bowrampet · Hyderabad",
   address: "Honest Residency, Bowrampet, Hyderabad, Telangana 500043",
   googleMapsUrl: "https://maps.app.goo.gl/YvD3Ee12B63DLxz5A?g_st=ac",
-  phoneDisplay: "+91 93910 36931",
-  phoneRaw: "+919391036931",
-  whatsappNumber: "919391036931",
+  phoneDisplay: "+91 86888 49825",
+  phoneRaw: "+918688849825",
+  whatsappNumber: "918688849825",
   visitingHours: "10:00 AM – 7:00 PM (Daily)",
   operatingHours: "24 Hours Care & Admissions",
 };
@@ -43,9 +53,93 @@ export const CORE_SERVICES: CareService[] = [
 ];
 
 export const ROOMS: RoomOption[] = [
-  { id: "twin-sharing", title: "Twin Sharing Room", pricePerMonth: "From ₹15,000 / month", description: "A bright, comfortable room for companionship, daily housekeeping, and 24/7 attendant support.", features: ["Attached senior-friendly bathroom", "4 vegetarian meals & tea included", "Attendant assistance & laundry"], imageUrl: "/images/room-twin-sharing.jpg" },
-  { id: "deluxe-private", title: "Private Deluxe Room", pricePerMonth: "From ₹22,000 / month", description: "A spacious private bedroom for elders who prefer quiet personal space, comfort, and dignity.", features: ["Orthopedic bed and wardrobe", "Attached anti-skid bathroom", "Meals, tea, laundry & housekeeping"], imageUrl: "/images/room-private-deluxe.jpg" },
-  { id: "high-dependency", title: "High-Dependency Nursing Care", pricePerMonth: "From ₹28,000 / month", description: "Dedicated round-the-clock care for bedridden, paralyzed, or post-operative recovery residents.", features: ["Dedicated bedside nurse / attendant", "Fowler bed with air mattress", "Vitals monitoring & doctor review"], imageUrl: "/images/room-nursing-care.jpg" },
+  {
+    id: "shared-budget",
+    title: "Shared Room Accommodation",
+    badge: "Budget-Friendly",
+    price: "₹5,000",
+    billingUnit: "per person / month",
+    pricePerMonth: "₹5,000 / person / month",
+    description: "This option features a 2-room unit shared by 4 people (2 people per room).",
+    layout: "2-Room Unit (Shared by 4 people, 2 per room)",
+    bathroomInfo: "1 common bathroom shared among the 4 occupants",
+    amenities: ["Television (TV)", "Senior-friendly beds", "Shared living comfort", "Housekeeping"],
+    features: [
+      "2-room unit shared by 4 people (2 people per room)",
+      "1 common bathroom shared among the 4 occupants",
+      "Standard amenities including Television (TV)",
+      "Daily housekeeping, bed linen care & 24/7 attendant support",
+      "Homely vegetarian meals and evening tea"
+    ],
+    imageUrl: "/images/room-twin-sharing.jpg",
+  },
+  {
+    id: "single-occupancy",
+    title: "Single Occupancy with Attached Bathroom",
+    badge: "Most Popular",
+    price: "₹10,000",
+    billingUnit: "per person / month",
+    pricePerMonth: "₹10,000 / person / month",
+    description: "A private 2-room apartment layout where only 1 person stays per room.",
+    layout: "Private 2-room apartment layout (1 person per room)",
+    bathroomInfo: "Attached bathroom for every individual room",
+    amenities: ["Attached Bathroom", "Television (TV)", "Orthopedic Bed", "Wardrobe", "Housekeeping"],
+    features: [
+      "Private 2-room apartment layout (1 person per room)",
+      "Complete privacy with an attached bathroom for every individual room",
+      "Television (TV) and other essential facilities",
+      "Peaceful personal space with orthopedic bed & wardrobe",
+      "Wholesome home-cooked South Indian vegetarian meals"
+    ],
+    imageUrl: "/images/room-private-deluxe.jpg",
+    popular: true,
+  },
+  {
+    id: "premium-suite",
+    title: "Premium 2-Room Suite with Dining & Fridge",
+    badge: "Spacious Comfort",
+    price: "₹25,000",
+    billingUnit: "per month",
+    pricePerMonth: "₹25,000 / month",
+    description: "A spacious 2-room setup designed for maximum comfort. One room functions as a dining area equipped with a refrigerator, while the other serves as a bedroom featuring a comfortable double bed and a TV.",
+    layout: "Spacious 2-Room Suite (Dining Area + Master Bedroom)",
+    bathroomInfo: "Dual bathrooms (completely personal/exclusive bathroom + attached setup)",
+    amenities: ["Dedicated Dining Area", "Refrigerator", "Double Bed", "Television (TV)", "Dual Bathrooms"],
+    food: "Special, premium meals prepared with utmost care, keeping your health and taste preferences in mind.",
+    features: [
+      "Spacious 2-room layout: Dining area + Master bedroom",
+      "Dining area fully equipped with a refrigerator",
+      "Bedroom featuring a comfortable double bed and a TV",
+      "Dual bathrooms ensuring completely personal/exclusive attached setup",
+      "Special, premium meals prepared with utmost care for health & taste",
+      "Daily housekeeping, laundry service & personalized care assistance"
+    ],
+    imageUrl: "/images/room-nursing-care.jpg",
+  },
+  {
+    id: "nri-luxury",
+    title: "Exclusive NRI Luxury Package",
+    badge: "Top-Tier Luxury",
+    price: "₹45,000",
+    billingUnit: "per month",
+    pricePerMonth: "₹45,000 / month",
+    description: "Specially tailored, top-tier luxury facilities exclusively designed for Non-Resident Indians (NRIs) to feel right at home.",
+    layout: "Private Luxury Suite with Dedicated Caregiver",
+    bathroomInfo: "Personal attached luxury bathroom",
+    amenities: ["Air Conditioner (AC)", "Television (TV)", "Refrigerator", "Private Room", "Personal Attached Bath", "Dedicated Caretaker"],
+    food: "Completely customized, premium menu prepared entirely according to your personal taste, dietary requirements, and daily preferences.",
+    specialService: "A dedicated personal caretaker will be appointed to cater to all your needs, ensuring a comfortable, homely, and luxurious experience.",
+    features: [
+      "Top-tier luxury setup designed for NRIs to feel right at home",
+      "Modern amenities: Air Conditioner (AC), TV & Refrigerator",
+      "Personal private room with exclusive attached luxury bathroom",
+      "Dedicated personal caretaker appointed 24/7 for all needs",
+      "Completely customized premium menu based on daily taste & diet",
+      "Priority doctor consults, daily vitals & family communication updates"
+    ],
+    imageUrl: "/images/gallery-care.jpg",
+    featured: true,
+  },
 ];
 
 export const GALLERY_PHOTOS: GalleryItem[] = [
