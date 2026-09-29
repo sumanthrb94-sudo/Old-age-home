@@ -3,6 +3,7 @@ import { Hero } from "./components/Hero";
 import { ServicesSection } from "./components/ServicesSection";
 import { LivingOptionsSection } from "./components/LivingOptionsSection";
 import { GallerySection } from "./components/GallerySection";
+import { TrustVerificationSection } from "./components/TrustVerificationSection";
 import { LocationSection } from "./components/LocationSection";
 import { Footer } from "./components/Footer";
 import { FloatingActions } from "./components/FloatingActions";
@@ -15,19 +16,22 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* Warm, Minimal Hero */}
+        {/* Warm, Minimal Hero with Top Images */}
         <Hero />
 
         {/* 4 Core Care Services */}
         <ServicesSection />
 
-        {/* Rooms & Monthly Fees */}
+        {/* 4 Accommodation & Pricing Options */}
         <LivingOptionsSection />
 
         {/* Curated Indian Elder Photo Gallery */}
         <GallerySection />
 
-        {/* Bowrampet Campus Location & Direct WhatsApp Contact */}
+        {/* Government Registrations, GST, PAN & Labour Approvals */}
+        <TrustVerificationSection />
+
+        {/* Bowrampet Campus Location & Direct Contact */}
         <LocationSection />
       </main>
 

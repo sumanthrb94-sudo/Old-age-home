@@ -32,17 +32,85 @@ export interface RoomOption {
   featured?: boolean;
 }
 
+export interface CertificateItem {
+  id: string;
+  title: string;
+  authority: string;
+  regNumber: string;
+  imageUrl: string;
+}
+
+export interface LegalCompliance {
+  registeredName: string;
+  proprietor: string;
+  gstin: string;
+  pan: string;
+  societyRegNo: string;
+  labourRegNo: string;
+  registeredOffice: string;
+  campusAddress: string;
+  certificates: CertificateItem[];
+}
+
 export const HOME_DETAILS = {
   name: "Siva Prakash Old Age Home",
+  registeredName: "Siva Prakash Homecare Service & Old Age Home",
+  proprietor: "Vemagiri Chinnodu",
   teluguName: "శివ ప్రకాష్ వృద్ధాశ్రమం",
   locationShort: "Bowrampet · Hyderabad",
   address: "Honest Residency, Bowrampet, Hyderabad, Telangana 500043",
+  registeredOffice: "Plot No. 70, H.No 8-415/70, Sapthagiri Colony, Miyapur, Hyderabad, Telangana 500049",
   googleMapsUrl: "https://maps.app.goo.gl/YvD3Ee12B63DLxz5A?g_st=ac",
   phoneDisplay: "+91 86888 49825",
   phoneRaw: "+918688849825",
   whatsappNumber: "918688849825",
+  gstin: "36AOBPV9001K1ZP",
+  pan: "ACFAS4467D",
+  societyRegNo: "1115 of 2023",
+  labourRegNo: "SEA/RAN/ALO/BN/0718451/2023",
   visitingHours: "10:00 AM – 7:00 PM (Daily)",
   operatingHours: "24 Hours Care & Admissions",
+};
+
+export const LEGAL_DETAILS: LegalCompliance = {
+  registeredName: "Siva Prakash Homecare Service & Old Age Home",
+  proprietor: "Vemagiri Chinnodu",
+  gstin: "36AOBPV9001K1ZP",
+  pan: "ACFAS4467D",
+  societyRegNo: "1115 of 2023",
+  labourRegNo: "SEA/RAN/ALO/BN/0718451/2023",
+  registeredOffice: "Plot No. 70, H.No 8-415/70, #301, 3rd Floor, Sapthagiri Colony, Miyapur, Hyderabad, Telangana 500049",
+  campusAddress: "Honest Residency, Bowrampet, Hyderabad, Telangana 500043",
+  certificates: [
+    {
+      id: "society",
+      title: "Telangana Societies Registration",
+      authority: "Registration & Stamps Dept, Govt. of Telangana",
+      regNumber: "No. 1115 of 2023",
+      imageUrl: "/images/cert-society-registration.jpeg",
+    },
+    {
+      id: "gst",
+      title: "GST Registration Certificate",
+      authority: "Form GST REG-06, Government of India",
+      regNumber: "36AOBPV9001K1ZP",
+      imageUrl: "/images/cert-gst-registration.jpeg",
+    },
+    {
+      id: "pan",
+      title: "Income Tax PAN Card",
+      authority: "Income Tax Department, Govt. of India",
+      regNumber: "ACFAS4467D",
+      imageUrl: "/images/cert-pan-card.jpeg",
+    },
+    {
+      id: "labour",
+      title: "Telangana Labour Registration",
+      authority: "Labour Department (Shops & Est. Act, 1988)",
+      regNumber: "SEA/RAN/ALO/BN/0718451/2023",
+      imageUrl: "/images/cert-labour-registration.jpeg",
+    },
+  ],
 };
 
 export const CORE_SERVICES: CareService[] = [
