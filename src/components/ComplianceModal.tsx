@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ShieldCheck, FileCheck, Award, Building2, User, MapPin, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { LEGAL_DETAILS, CertificateItem } from "../data/homeData";
+import { Stagger, staggerItem } from "./ui/motion";
 
 interface ComplianceModalProps {
   isOpen: boolean;
@@ -10,16 +12,24 @@ interface ComplianceModalProps {
 export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
   const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
 
-  if (!isOpen) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm animate-in fade-in duration-200"
+    <AnimatePresence>
+    {isOpen && (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
       onClick={onClose}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
     >
-      <div
+      <motion.div
         className="relative max-h-[92vh] max-w-4xl w-full overflow-hidden rounded-3xl bg-[#fbf6ed] shadow-2xl border border-[#eadfd2] flex flex-col"
         onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.92, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 20 }}
+        transition={{ type: "spring", stiffness: 280, damping: 26 }}
       >
         {/* Modal Header */}
         <div className="flex items-center justify-between border-b border-[#eadfd2] bg-white px-6 py-5">
@@ -44,9 +54,9 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
         {/* Modal Body */}
         <div className="overflow-y-auto p-6 space-y-6">
           {/* Quick Credential Cards Grid */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger onMount delay={0.15} stagger={0.07} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {/* Society Reg */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
+            <motion.div variants={staggerItem} className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
               <div>
                 <span className="rounded-full bg-[#176f70]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#176f70]">
                   Societies Act 2001
@@ -64,10 +74,10 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
               >
                 <FileCheck className="h-3.5 w-3.5" /> View Certificate
               </button>
-            </div>
+            </motion.div>
 
             {/* GST */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
+            <motion.div variants={staggerItem} className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
               <div>
                 <span className="rounded-full bg-[#d97732]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#b35919]">
                   Govt. of India GST
@@ -85,10 +95,10 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
               >
                 <FileCheck className="h-3.5 w-3.5" /> View Form GST
               </button>
-            </div>
+            </motion.div>
 
             {/* PAN */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
+            <motion.div variants={staggerItem} className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
               <div>
                 <span className="rounded-full bg-[#762f35]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#762f35]">
                   Income Tax Dept
@@ -106,10 +116,10 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
               >
                 <FileCheck className="h-3.5 w-3.5" /> View PAN Card
               </button>
-            </div>
+            </motion.div>
 
             {/* Labour */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
+            <motion.div variants={staggerItem} className="flex flex-col justify-between rounded-2xl border border-[#e4d5c3] bg-white p-4 shadow-2xs">
               <div>
                 <span className="rounded-full bg-[#176f70]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#176f70]">
                   Labour Dept, TG
@@ -129,11 +139,15 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
               >
                 <FileCheck className="h-3.5 w-3.5" /> View Form-II
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </Stagger>
 
           {/* Legal Summary Details */}
-          <div className="rounded-2xl bg-white p-5 border border-[#e4d5c3] shadow-2xs text-xs text-[#615650] grid gap-4 md:grid-cols-3">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="rounded-2xl bg-white p-5 border border-[#e4d5c3] shadow-2xs text-xs text-[#615650] grid gap-4 md:grid-cols-3">
             <div className="flex items-start gap-2.5">
               <Building2 className="h-4 w-4 mt-0.5 shrink-0 text-[#762f35]" />
               <div>
@@ -155,7 +169,7 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
                 <span>{LEGAL_DETAILS.registeredOffice}</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Modal Footer */}
@@ -168,17 +182,26 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
             Close
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Nested Certificate Zoom View */}
+      <AnimatePresence>
       {selectedCert && (
-        <div
+        <motion.div
           className="fixed inset-0 z-60 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
           onClick={() => setSelectedCert(null)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <div
+          <motion.div
             className="relative max-h-[92vh] max-w-xl w-full overflow-hidden rounded-3xl bg-white p-4 sm:p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
           >
             <div className="mb-3 flex items-center justify-between border-b border-stone-200 pb-2">
               <div>
@@ -207,9 +230,12 @@ export function ComplianceModal({ isOpen, onClose }: ComplianceModalProps) {
                 Back to Compliance
               </button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-    </div>
+      </AnimatePresence>
+    </motion.div>
+    )}
+    </AnimatePresence>
   );
 }

@@ -1,5 +1,6 @@
 import { HeartHandshake, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { HOME_DETAILS, LEGAL_DETAILS } from "../data/homeData";
+import { FadeIn } from "./ui/motion";
 
 interface FooterProps {
   onOpenCompliance?: () => void;
@@ -10,7 +11,7 @@ export function Footer({ onOpenCompliance }: FooterProps) {
     <footer className="bg-[#27221f] py-12 text-white">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 md:flex-row md:items-start md:justify-between">
         {/* Brand & Mission */}
-        <div className="max-w-md">
+        <FadeIn y={20} className="max-w-md">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#762f35] text-[#f8d79b]">
               <HeartHandshake className="h-6 w-6" />
@@ -36,10 +37,10 @@ export function Footer({ onOpenCompliance }: FooterProps) {
               <span>Govt. Reg No: {HOME_DETAILS.societyRegNo} · GST & PAN Verified</span>
             </button>
           </div>
-        </div>
+        </FadeIn>
 
         {/* Contact Links */}
-        <div className="flex flex-col gap-3 text-xs font-semibold text-white/80">
+        <FadeIn delay={0.15} y={20} className="flex flex-col gap-3 text-xs font-semibold text-white/80">
           <p className="text-[11px] font-bold uppercase tracking-wider text-white/40">Direct Contact</p>
           <a href={`tel:${HOME_DETAILS.phoneRaw}`} className="flex items-center gap-2 hover:text-[#f8d79b]">
             <Phone className="h-4 w-4 text-[#d97732]" /> {HOME_DETAILS.phoneDisplay}
@@ -50,7 +51,7 @@ export function Footer({ onOpenCompliance }: FooterProps) {
           <p className="text-[11px] text-white/50 max-w-xs">
             Reg. Office: {LEGAL_DETAILS.registeredOffice}
           </p>
-        </div>
+        </FadeIn>
       </div>
 
       <div className="mx-auto mt-8 max-w-7xl border-t border-white/10 px-5 pt-6 text-xs text-white/40 sm:px-8 flex flex-col sm:flex-row sm:justify-between gap-2">

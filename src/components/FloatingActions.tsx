@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { HOME_DETAILS } from "../data/homeData";
 
 export function FloatingActions() {
@@ -6,13 +7,19 @@ export function FloatingActions() {
   )}`;
 
   return (
-    <aside aria-label="WhatsApp enquiry" className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center gap-3">
+    <motion.aside
+      aria-label="WhatsApp enquiry"
+      initial={{ opacity: 0, y: 80, scale: 0.6 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ type: "spring", stiffness: 220, damping: 18, delay: 1.2 }}
+      className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center gap-3"
+    >
       {/* Subtle pulse pill on desktop */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="group relative flex items-center gap-3 rounded-full bg-white py-2 pl-4 pr-3 shadow-2xl border border-stone-200 transition-all duration-300 hover:scale-105 hover:shadow-emerald-500/20"
+        className="group relative flex items-center gap-3 rounded-full transition-transform duration-300 hover:scale-105 sm:border sm:border-stone-200 sm:bg-white sm:py-2 sm:pl-4 sm:pr-3 sm:shadow-2xl"
       >
         {/* Text Prompt with green online status dot */}
         <div className="hidden sm:flex flex-col text-left">
@@ -40,6 +47,6 @@ export function FloatingActions() {
           </svg>
         </div>
       </a>
-    </aside>
+    </motion.aside>
   );
 }
