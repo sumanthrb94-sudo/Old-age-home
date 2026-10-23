@@ -19,7 +19,7 @@ export function FloatingActions() {
         href={whatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="group relative flex items-center gap-3 rounded-full transition-transform duration-300 hover:scale-105 sm:border sm:border-stone-200 sm:bg-white sm:py-2 sm:pl-4 sm:pr-3 sm:shadow-2xl"
+        className="group relative flex items-center gap-3 rounded-full transition-transform duration-300 hover:scale-105 sm:border sm:border-stone-200 sm:bg-white sm:p-2 sm:pl-4 sm:shadow-2xl"
       >
         {/* Text Prompt with green online status dot */}
         <div className="hidden sm:flex flex-col text-left">
