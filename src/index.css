@@ -31,4 +31,63 @@ button, a { -webkit-tap-highlight-color: transparent; }
 a, button { transition: transform 160ms cubic-bezier(.23,1,.32,1), background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease; }
 a:active, button:active { transform: scale(.97); }
 
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+/* ---------- Mint motion primitives (see src/components/ui/motion.tsx) ---------- */
+/* shimmer that sweeps across a *stressed* word once it has landed, then repeats gently */
+.mm-emph { position: relative; }
+.mm-emph::after {
+  content: attr(data-t); position: absolute; left: 0; top: 0; white-space: nowrap; pointer-events: none; color: transparent;
+  background-image: linear-gradient(100deg, transparent 35%, rgba(255, 244, 222, .95) 50%, transparent 65%);
+  background-size: 300% 100%; background-repeat: no-repeat; -webkit-background-clip: text; background-clip: text;
+  background-position: 150% 0; opacity: 0;
+}
+[data-on="true"] .mm-emph::after { animation: mm-shimmer 5s ease-in-out var(--mm-d, 0s) infinite; }
+@keyframes mm-shimmer { 0% { background-position: 150% 0; opacity: 1; } 28% { background-position: -50% 0; opacity: 1; } 29%, 100% { background-position: -50% 0; opacity: 0; } }
+
+/* rolling digits */
+.mm-num-line { display: inline-block; height: 1.1em; line-height: 1.1em; }
+.mm-digit { position: relative; display: inline-block; height: 1.1em; line-height: 1.1em; overflow: hidden; }
+.mm-digit-stack { position: absolute; inset: 0 0 auto 0; display: flex; flex-direction: column; align-items: center; }
+.mm-digit-stack > span { display: block; height: 1.1em; line-height: 1.1em; }
+
+/* light travelling around a card's border */
+.mm-trail { display: none; }
+@supports (offset-path: rect(0 auto auto 0 round 1px)) {
+  .mm-trail {
+    display: block; position: absolute; border-radius: var(--mm-tr); border: var(--mm-tw) solid transparent; pointer-events: none; z-index: 5;
+    -webkit-mask-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000); mask-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+    -webkit-mask-clip: padding-box, border-box; mask-clip: padding-box, border-box; -webkit-mask-composite: source-in; mask-composite: intersect;
+  }
+  .mm-trail > i {
+    position: absolute; width: var(--mm-ts); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, var(--mm-tc) 28%, transparent 70%);
+    offset-path: rect(0 auto auto 0 round var(--mm-tr)); animation: mm-trail var(--mm-td) linear infinite;
+  }
+}
+@keyframes mm-trail { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+/* rotating halo behind a CTA (parent needs `relative isolate`) */
+@property --mm-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.mm-glow {
+  position: absolute; inset: -5px; z-index: -1; border-radius: inherit; filter: blur(14px); opacity: .55; pointer-events: none;
+  background: conic-gradient(from var(--mm-a), #25d366, #f8d79b, #d97732, #25d366); animation: mm-spin 6s linear infinite;
+}
+@keyframes mm-spin { to { --mm-a: 360deg; } }
+
+/* sweep of light across a button on hover */
+.mm-shine { position: relative; overflow: hidden; isolation: isolate; }
+.mm-shine::before {
+  content: ""; position: absolute; top: -30%; left: -45%; width: 30%; height: 160%; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent); transform: skewX(-20deg);
+  transition: left 700ms cubic-bezier(.22, 1, .36, 1);
+}
+.mm-shine:hover::before { left: 130%; }
+
+/* nav underline that grows from the left */
+.mm-link { position: relative; }
+.mm-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #d97732; transform: scaleX(0); transform-origin: right; transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
+.mm-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .mm-emph::after, .mm-trail, .mm-glow { animation: none !important; display: none; }
+}

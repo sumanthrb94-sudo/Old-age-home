@@ -1,5 +1,7 @@
 import { Check, ArrowUpRight, Bath, Home, Sparkles, Utensils, HeartHandshake, Tv } from "lucide-react";
+import { motion } from "motion/react";
 import { ROOMS, HOME_DETAILS } from "../data/homeData";
+import { BorderTrail, FadeIn, Price, Stagger, TextEffect, staggerItem } from "./ui/motion";
 
 export function LivingOptionsSection() {
   const getLink = (r: typeof ROOMS[number]) =>
@@ -11,25 +13,29 @@ export function LivingOptionsSection() {
     <section id="rooms" className="bg-[#f1e5d5] py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-12 max-w-3xl">
-          <p className="eyebrow text-[#762f35]">Stay & Accommodation options</p>
-          <h2 className="mt-3 font-editorial text-4xl text-[#27221f] sm:text-5xl">
-            A living space tailored to <span className="text-[#d97732]">every need.</span>
-          </h2>
-          <p className="mt-4 text-base leading-7 text-[#766a61]">
+          <FadeIn as="p" y={12} className="eyebrow text-[#762f35]">Stay & Accommodation options</FadeIn>
+          <TextEffect
+            as="h2"
+            text="A living space tailored to *every need.*"
+            accentClassName="text-[#d97732]"
+            className="mt-3 font-editorial text-4xl text-[#27221f] sm:text-5xl"
+          />
+          <FadeIn as="p" delay={0.3} y={14} className="mt-4 text-base leading-7 text-[#766a61]">
             From budget-friendly shared accommodations to fully personalized NRI luxury suites with private caretakers,
             every room provides a caring, safe, and homely sanctuary.
-          </p>
+          </FadeIn>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
+        <Stagger stagger={0.12} amount={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
           {ROOMS.map((room) => {
             const isFeatured = room.featured;
             const isPopular = room.popular;
 
             return (
-              <article
+              <motion.article
                 key={room.id}
-                className={`relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                variants={staggerItem}
+                className={`group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-md transition-[translate,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
                   isFeatured
                     ? "ring-2 ring-[#d97732] shadow-[#d97732]/10"
                     : isPopular
@@ -37,6 +43,10 @@ export function LivingOptionsSection() {
                     : "border border-[#eadfd2]"
                 }`}
               >
+                {(isFeatured || isPopular) && (
+                  <BorderTrail color={isFeatured ? "#d97732" : "#176f70"} radius={24} duration={isFeatured ? 6 : 8} />
+                )}
+
                 {/* Popular or Featured Badge Banner */}
                 {(isFeatured || isPopular || room.badge) && (
                   <div
@@ -57,7 +67,7 @@ export function LivingOptionsSection() {
                   <img
                     src={room.imageUrl}
                     alt={room.title}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
                   <div className="absolute bottom-3 left-3 rounded-full bg-[#27221f]/85 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
@@ -70,9 +80,7 @@ export function LivingOptionsSection() {
                   {/* Price */}
                   <div className="mb-3">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="font-editorial text-3xl font-bold text-[#762f35]">
-                        {room.price}
-                      </span>
+                      <Price text={room.price} className="font-editorial text-3xl font-bold text-[#762f35]" />
                       <span className="text-xs font-medium text-[#766a61]">
                         {room.billingUnit}
                       </span>
@@ -144,7 +152,7 @@ export function LivingOptionsSection() {
                     href={getLink(room)}
                     target="_blank"
                     rel="noreferrer"
-                    className={`mt-auto flex items-center justify-center gap-2 rounded-full py-3 text-xs font-bold transition-colors ${
+                    className={`group/cta mm-shine mt-auto flex items-center justify-center gap-2 rounded-full py-3 text-xs font-bold transition-colors ${
                       isFeatured
                         ? "bg-[#d97732] text-white hover:bg-[#b35919]"
                         : isPopular
@@ -152,13 +160,14 @@ export function LivingOptionsSection() {
                         : "bg-[#762f35] text-white hover:bg-[#5e242a]"
                     }`}
                   >
-                    Enquire Availability <ArrowUpRight className="h-4 w-4" />
+                    Enquire Availability{" "}
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
                   </a>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
