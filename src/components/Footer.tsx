@@ -58,6 +58,19 @@ export function Footer({ onOpenCompliance }: FooterProps) {
         <span>© {new Date().getFullYear()} {HOME_DETAILS.name}. {LEGAL_DETAILS.registeredName}.</span>
         <span>Proprietor: {LEGAL_DETAILS.proprietor} · GSTIN: {HOME_DETAILS.gstin}</span>
       </div>
+
+      {/* Agency credit */}
+      <div className="mx-auto mt-4 max-w-7xl px-5 text-center text-xs text-white/40 sm:px-8">
+        Built with{" "}
+        <a
+          href="https://brandmintstudios.in"
+          target="_blank"
+          rel="noopener"
+          className="font-bold text-[#7CF6C8] hover:text-white transition-colors"
+        >
+          Brand Mint
+        </a>
+      </div>
     </footer>
   );
 }
