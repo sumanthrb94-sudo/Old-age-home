@@ -12,6 +12,8 @@
 
 :root { color-scheme: light; }
 html { scroll-behavior: smooth; }
+/* land section headings below the sticky header */
+section[id] { scroll-margin-top: 84px; }
 body { margin: 0; background: #fbf6ed; color: #27221f; font-family: var(--font-sans); }
 .font-editorial { font-family: var(--font-serif); }
 

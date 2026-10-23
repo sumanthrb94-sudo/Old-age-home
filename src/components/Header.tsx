@@ -20,6 +20,17 @@ export function Header({ onOpenCompliance }: HeaderProps) {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
 
+  // Scrolling while the drawer collapses cancels the browser's own anchor jump,
+  // so close the drawer first and scroll once it has finished closing.
+  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    window.setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", href);
+    }, 380);
+  };
+
   return (
     <>
       <div className="pattern-band h-2" aria-hidden="true" />
@@ -125,7 +136,7 @@ export function Header({ onOpenCompliance }: HeaderProps) {
                 <motion.a
                   key={n.href}
                   href={n.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => goTo(e, n.href)}
                   variants={{ hidden: { opacity: 0, x: -14 }, show: { opacity: 1, x: 0 } }}
                 >
                   {n.label}
